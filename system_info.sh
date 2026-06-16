@@ -52,30 +52,34 @@ check_file() {
     fi
 }
 
+# HLAVNÉ SYSTEMOVÉ PROGRAMY
 check_tool "Git (Verziovanie a kľúče) " "git"
 check_tool "Python3 (Prostredie skriptov)" "python3"
-check_file "GitHub Globálna konfigurácia" "$HOME/.gitconfig"
-check_dir  "SSH Kľúče (Spojenie GitHub) " "$HOME/.ssh"
+check_tool "Midnight Commander (mc)  " "mc"
+
+# BEZPEČNOSŤ A EXPLOITY
 check_tool "Nmap (Sieťový skener)      " "nmap"
 check_tool "Hydra (Brute-force)       " "hydra"
 check_tool "Sqlmap (SQL injekcie)     " "sqlmap"
 check_tool "John (Límač/Cracker hashov)" "john"
-check_dir  "John Konfiguračné jadro   " "$HOME/.john"
+
+# BEZDRÔTOVÝ AUDIT (WIFI)
+check_dir  "Wifite2 (Wireless core)   " "$HOME/wifite2"
+check_tool "Aircrack-ng (Wifi suite)  " "aircrack-ng"
+check_tool "Hashcat (GPU/CPU cracker) " "hashcat"
+check_tool "Bully (WPS attack tool)   " "bully"
+
+# PROJEKTY A OSINT
 check_dir  "GitHub Pilot (Záloha web) " "$HOME/github-pilot"
 check_dir  "Sherlock (OSINT Username)  " "$HOME/sherlock"
 check_dir  "Work Tools (Sieťové jadro) " "$HOME/work_tools"
-check_dir  "Scripts (Vlastné skripty)  " "$HOME/scripts"
-check_dir  "Projects (Rozrobené veci)  " "$HOME/projects"
-check_dir  "Wordlists (Slovníky hesiel)" "$HOME/wordlists"
-check_file "Kali Audit (Hlavný Denník) " "$HOME/kali_audit_2026-06-14.log"
-check_file "Slovník (mo_slovnik.txt)   " "$HOME/mo_slovnik.txt"
 
 echo ""
 FREE_SPACE=$(df -m / | awk 'NR==2 {print $4}')
 if [ "$FREE_SPACE" -ge 7577 ]; then
     echo -e " ${BLUE}i${NC} Voľné miesto: $(df -h / | awk 'NR==2 {print $4}') (Optimalizované pre chod systému)"
 else
-    echo -e " ${YELLOW}▲${NC} Metasploit / Kompletné Kali Tools: Nedostupné (Vyžadujú viac než 7.4 GB)"
+    echo -e " ${YELLOW}▲${NC} Metasploit / Kompletné Kali Tools: Nedostupné"
 fi
 
 echo -e "=================================================="
